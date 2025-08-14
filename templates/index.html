@@ -23,47 +23,65 @@
         }
 
         /* Toggle button estilo */
+        /* Container principal do nav */
+        .nav-container {
+            display: flex;
+            justify-content: space-between; /* espaço entre nome e toggle */
+            align-items: center;
+            padding: 10px 20px;
+            position: relative;
+        }
+
+        /* Nome do site/usuário */
+        .nav-left .site-name {
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: var(--text-light);
+        }
+
+        /* Toggle button */
         .menu-toggle {
-        display: none;
-        flex-direction: column;
-        cursor: pointer;
-        gap: 5px;
+            display: none; /* só aparece no mobile */
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
         }
 
         .menu-toggle span {
-        width: 25px;
-        height: 3px;
-        background: var(--text-light);
-        transition: all 0.3s ease;
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
         }
 
-        /* Mobile menu escondido */
+        /* Menu padrão */
         #nav-list {
-        display: flex;
-        gap: 2rem;
+            display: flex;
+            gap: 2rem;
         }
 
+        /* Mobile */
         @media (max-width: 768px) {
-        .menu-toggle {
-            display: flex;
+            .menu-toggle {
+                display: flex;
+            }
+
+            #nav-list {
+                display: none;
+                flex-direction: column;
+                background-color: var(--background-medium);
+                padding: 1rem;
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                border-radius: 8px;
+                box-shadow: var(--card-shadow);
+            }
+
+            #nav-list.show {
+                display: flex;
+            }
         }
 
-        #nav-list {
-            display: none;
-            flex-direction: column;
-            background-color: var(--background-medium);
-            padding: 1rem;
-            position: absolute;
-            top: 70px;
-            right: 20px;
-            border-radius: 8px;
-            box-shadow: var(--card-shadow);
-        }
-
-        #nav-list.show {
-            display: flex;
-        }
-        }
     </style>
 </head>
 
@@ -80,22 +98,26 @@
     {% endfor %}
 
     <header id="main-header">
-    <nav>
-        <div class="menu-toggle" id="menu-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-        </div>
+        <nav class="nav-container">
+            <div class="nav-left">
+                <span class="site-name"> {{aboutMe.title}} </span>
+            </div>
+            
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
 
-        <ul id="nav-list"> <!-- mudar para nav-list para bater com JS -->
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#awards">Awards</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+            <ul id="nav-list">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#awards">Awards</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
   <main>
