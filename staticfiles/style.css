@@ -6,6 +6,51 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
+/* Toggle button estilo */
+.menu-toggle {
+  display: flex !important; /* força a mostrar */
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: red; /* cor temporária pra ver no teste */
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: white;
+}
+
+
+/* Mobile menu escondido */
+#nav-list {
+  display: flex;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  #nav-list {
+    display: none;
+    flex-direction: column;
+    background-color: var(--background-medium);
+    padding: 1rem;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+  }
+
+  #nav-list.show {
+    display: flex;
+  }
+}
+
+
 /* Basic Reset & Dark Mode Setup */
 :root {
   --background-dark: #121212; /* Deep dark background */

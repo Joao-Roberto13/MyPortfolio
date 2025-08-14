@@ -1,3 +1,11 @@
+// Toggle Menu
+const menuToggle = document.getElementById('menu-toggle');
+const navList = document.getElementById('nav-list'); // corrigido
+
+menuToggle.addEventListener('click', () => {
+  navList.classList.toggle('show');
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     // Smooth Scrolling for Navigation Links
     document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
@@ -94,13 +102,4 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', highlightNavLink);
     // Call on load to set initial active link
     highlightNavLink();
-});
-
-
-// Script simples para abrir/fechar o menu no celular
-const menuToggle = document.getElementById('menu-toggle');
-const navList = document.getElementById('nav-list');
-
-menuToggle.addEventListener('click', () => {
-  navList.classList.toggle('show');
 });
