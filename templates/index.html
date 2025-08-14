@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IT Developer Portfolio</title>
+  <title> {{aboutMe.title}} </title>
 
   <!-- Optional: Link to Google Fonts for 'JetBrains Mono' or similar monospace font -->
   <!-- <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet"> -->
@@ -21,6 +21,7 @@
     </style>
 
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    Count: {{ hitcount }}
 </head>
 
 <body>
@@ -55,9 +56,9 @@
       <section id="home" class="hero reveal-on-scroll">
           <div class="hero-content">
               <img src="{% static '/img/jr.jpg' %}?height=200&width=200" alt="João Rberto" class="profile-picture">
-              <h1>Olá, Sou João Roberto</h1>
-              <p> Sou um desenvolvedor de software com experiência em transformar ideias em soluções tecnológicas eficientes, sempre focado em melhorar a performance e a experiência do utilizado </p>
-              <p>Bem-vindo ao meu portfólio!</p>
+              <h1> {{aboutMe.helloMessage}} </h1>
+              <p> {{aboutMe.welcomeText}} </p>
+              <p>{{aboutMe.welcomeMessage}}</p>
               <a href="#projects" class="btn primary-btn">Ver Meus Projetos</a>
           </div>
       </section>
@@ -103,7 +104,7 @@
       </section>
 
       <section id="awards" class="awards-section reveal-on-scroll">
-          <h2>My Awards & Recognitions</h2>
+          <h2>My Awards </h2>
           <div class="awards-grid">
                 {% for award in myAward  %}
                 <div class="award-card">

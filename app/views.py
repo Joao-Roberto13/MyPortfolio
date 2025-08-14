@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
-from app.models import AboutMe, MyProject, MySkill, MyAward, MyInformation, MySocial, ContactFormLog
+from app.models import AboutMe, MyProject, MySkill, MyAward, MyInformation, MySocial, ContactFormLog, HitCount
 # Create your views here.
 
 def index(request):
@@ -15,6 +15,15 @@ def index(request):
     myAward = MyAward.objects.all()
     myInformation = MyInformation.objects.first() #só vou usar um unico dado e não há necessidade de percorrer lista para ter 1 dado
     mysocial = MySocial.objects.first()
+
+    # Cria/pega o contador
+    hit, created = HitCount.objects.get_or_create(id=1)
+
+    # Checa se o usuário já contou nesta sessão
+    if not request.session.get('hitcount_session'):
+        hit.count += 1
+        hit.save()
+        request.session['hitcount_session'] = True
 
     # Divide as tecnologias por vírgula e salva como uma nova variável em cada projeto
     for proj in myProject:
@@ -30,6 +39,7 @@ def index(request):
         "myAward": myAward,
         "myInfo": myInformation,
         "mysocial": mysocial,
+        "hitcount": hit.count,
     }
 
     return render(request, "index.html", context)

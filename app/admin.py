@@ -1,10 +1,14 @@
 from django.contrib import admin
-from app.models import AboutMe, MyProject, MySkill, MyAward, MyInformation, MySocial, ContactFormLog
+from app.models import HitCount, AboutMe, MyProject, MySkill, MyAward, MyInformation, MySocial, ContactFormLog
 
 # Register your models here.
 @admin.register(AboutMe)
 class AboutMeAdmin(admin.ModelAdmin):
     list_display = [
+        'title',
+        'helloMessage',
+        'welcomeText',
+        'welcomeMessage',
         'description1',
         'description2',
         'description3',    
@@ -98,3 +102,21 @@ class ContactFormLog(admin.ModelAdmin):
     def has_delete_permission(self, request, obj = None):
         return False
 
+@admin.register(HitCount)
+class HitCount(admin.ModelAdmin):
+    list_display = [
+        'count',
+        'last_updated',
+    ]
+
+    # Nao tem permisao para adicionar
+    def has_add_permission(self, request, obj = None):
+        return False
+
+    # #nao tem permicao para alterar
+    def has_change_permission(self, request, obj = None):
+        return False
+    
+    # #o admin nao tem permissao para deletar
+    def has_delete_permission(self, request, obj = None):
+        return False

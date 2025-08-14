@@ -2,13 +2,26 @@ from django.db import models
 
 # Create your models here.
 
+class HitCount(models.Model):
+    count = models.PositiveIntegerField(default=0)
+    last_updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Hits: {self.count}"
+
 class AboutMe(models.Model):
+    title = models.CharField(max_length=22, default = "JR Portfolio")
+    helloMessage = models.CharField(max_length=55, default="Olá, Sou João Roberto")
+    welcomeText = models.CharField(max_length=255,default="Sou um desenvolvedor de software com experiência em transformar ideias em" \
+    " soluções tecnológicas eficientes, sempre focado em melhorar a performance e a experiência do utilizado")
+    welcomeMessage = models.CharField(max_length=55, default = "Bem-vindo ao meu portfólio!")
+    
     description1 = models.CharField(max_length=500, default = "")
     description2 = models.CharField(max_length=255, default = "")
     description3 = models.CharField(max_length=355, default = "")
 
     def __str__(self):
-        return self.description1
+        return self.title
 
 class MyProject(models.Model):
     project_Name = models.CharField(max_length = 30, default = "")
